@@ -9,7 +9,7 @@ class ProductsController extends Controller
     public function list(){
         return view('list_products');
     }
-    public function add(){
+    public function addProduct(){
         return view('product_add');
     }
     public function store(Request $request){}
