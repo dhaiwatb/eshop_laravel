@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +17,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+Route::get('login', [AuthController::class, 'login']);
+Route::get('register', [AuthController::class, 'register']);
+Route::get('logout', [AuthController::class, 'logout']);
+
+Route::post('auth_login', [AuthController::class, 'authLogin']);
+Route::post('store', [AuthController::class, 'store']);
+
+Route::group(['prefix' => 'products'], function(){
+// Route::group(['prefix' => 'products', 'middleware' => 'auth:web'], function(){
+
+    Route::get('list', [ProductsController::class, 'listProducts']);
+    Route::get('add', [ProductsController::class, 'addProduct']);
+
 });
